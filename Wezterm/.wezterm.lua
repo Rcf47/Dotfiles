@@ -6,6 +6,13 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+config.window_decorations = "RESIZE"
+config.window_padding = {
+  left = 5,
+  right = 5,
+  top = 5,
+  bottom = 5,
+}
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = .88
 config.font_size = 22
