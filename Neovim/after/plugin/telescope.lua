@@ -21,6 +21,7 @@ telescope.setup {
     file_ignore_patterns = {
       "node_modules"
     },
+    path_display = { "smart" },
     -- preview config
     --    layout_config = {
     --      horizontal = {
@@ -31,7 +32,7 @@ telescope.setup {
     --    layout_strategy = 'flex',
     mappings = {
       n = {
-            ["q"] = actions.close
+        ["q"] = actions.close
       },
     },
   },
@@ -42,14 +43,14 @@ telescope.setup {
       hijack_netrw = true,
       mappings = {
         -- your custom insert mode mappings
-            ["i"] = {
-              ["<C-w>"] = function() vim.cmd('normal vbd') end,
+        ["i"] = {
+          ["<C-w>"] = function() vim.cmd('normal vbd') end,
         },
-            ["n"] = {
+        ["n"] = {
           -- your custom normal mode mappings
-              ["N"] = fb_actions.create,
-              ["h"] = fb_actions.goto_parent_dir,
-              ["/"] = function()
+          ["N"] = fb_actions.create,
+          ["h"] = fb_actions.goto_parent_dir,
+          ["/"] = function()
             vim.cmd('startinsert')
           end
         },

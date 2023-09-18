@@ -3,6 +3,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 vim.opt.title = true
 vim.opt.autoindent = true
@@ -44,13 +45,16 @@ vim.opt.formatoptions:append { 'r' }
 vim.g.XkbSwitchEnabled = 1
 vim.g.XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
 
---For prettier
---vim.g.prettier.autoformat = 1
---vim.g.prettier.autoformat_require_pragma = 0
---
 --Colorizer
 vim.g.colorizer_auto_color = 1
 
 --Bg Color
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+--clipboard anywhere
+vim.opt.clipboard = "unnamedplus"
+
+--hl line
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true

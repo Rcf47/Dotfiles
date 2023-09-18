@@ -13,17 +13,17 @@ catppuccin.setup({
   },
   integrations = {
     which_key = true,
-  }
+  },
 })
 
 vim.cmd.colorscheme "catppuccin"
 
-local base1 = "#2D3145"
+-- local base1 = "#2D3145"
 
 local colors = require("catppuccin.palettes").get_palette()
 require("catppuccin.lib.highlighter").syntax({
   -- MsgArea = { bg = colors.mantle },
-  NormalFloat = { bg = none },
+  NormalFloat = { bg = 'none' },
   CursorLine = { bg = colors.surface0 },
   -- PmenuSel = { fg = colors.mantle, bg = colors.blue },
   -- FloatBorder = { fg = colors.surface0, bg = colors.surface0 },

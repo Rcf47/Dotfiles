@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) <- not working
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -27,16 +27,16 @@ vim.keymap.set("i", "<C-c>", "<Esc>", { desc = 'Normal mode in insert menu' })
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = 'fast format' })
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s:\<<C-r><C-w>\>:<C-r><C-w>:gI<Left><Left><Left>]], { desc = 'fast substitute' })
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'add chmod x' })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/vadim/packer.lua<CR>", { desc = 'Open packer.lua' });
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+--vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 
 --From craftzdog maps.lua
@@ -47,8 +47,8 @@ vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { desc = 'Select all' })
 -- New tab
 vim.keymap.set('n', 'te', ':tabedit<cr>', { desc = 'new tab' })
 -- Split window
-vim.keymap.set('n', 'ss', ':split<Return><C-w>w', { desc = 'split' })
-vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { desc = ':vsplit' })
+vim.keymap.set('n', '<leader>ss', ':split<Return><C-w>w', { desc = 'split' })
+vim.keymap.set('n', '<leader>sv', ':vsplit<Return><C-w>w', { desc = ':vsplit' })
 
 
 --Insert mode
@@ -128,9 +128,37 @@ vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
 vim.keymap.set('v', '<leader>tg', require("telescope").extensions["pathogen"].grep_string,
   { desc = 'pathogen grep_string' })
 vim.keymap.set('n', "<leader>tlg", ":Telescope pathogen live_grep<CR>",
-{ silent = true, desc = 'Telescope path live grep' })
+  { silent = true, desc = 'Telescope path live grep' })
 vim.keymap.set('n', "<leader>tp", ":Telescope pathogen<CR>", { silent = true, desc = 'Telescope pathogen' })
 vim.keymap.set('n', "<leader>tf", ":Telescope pathogen find_files<CR>",
-{ silent = true, desc = 'Telescope path find files' })
+  { silent = true, desc = 'Telescope path find files' })
 vim.keymap.set('n', "<leader>tg", ":Telescope pathogen grep_string<CR>",
-{ silent = true, desc = 'Telescope path grep string' })
+  { silent = true, desc = 'Telescope path grep string' })
+
+--nvimtree
+vim.keymap.set('n', '<leader>nt', '<cmd>NvimTreeToggle<CR>', { desc = 'NvimTreeToggle' })
+
+--numeric lines
+vim.keymap.set('n', '<leader>en', ":s:^\\s*\\zs:\\=(line('.')-line(\"'<\")).'. '<Home>", { desc = 'Numeric text' })
+
+--for node js
+vim.keymap.set('n', '<leader>vs', "<cmd>!node %<CR>", { desc = "start Node.js" })
+
+--toggle numbers
+vim.keymap.set('n', '<leader><leader>n', '<cmd>set relativenumber!<CR>')
+
+--start of the line and end of the line
+vim.keymap.set('n', '<leader><leader>s', '^', { desc = "start of the line" })
+vim.keymap.set('n', '<leader><leader>e', '$', { desc = "end of the line" })
+
+--oil open
+vim.keymap.set('n', '<leader><leader>o', '<cmd>Oil<CR>', { desc = "open oil file explorer" })
+
+--spliting joining blocks treesj
+vim.keymap.set('n', '<leader><leader>t', '<cmd>TSJToggle<CR>', { desc = "Spliting joining blocks" })
+
+--autosave toggle
+vim.keymap.set('n', '<leader>as', "<cmd>ASToggle<CR>", { desc = "Autosave toggle" })
+
+--prettier
+vim.keymap.set('n', '<leader>p', '<cmd>Prettier<CR>', { desc = 'Prettier' })

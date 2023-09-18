@@ -38,6 +38,7 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-ts-autotag'
 
   use { "catppuccin/nvim", as = "catppuccin" }
+  use { 'hardhackerlabs/theme-vim', as = "hardhacker" }
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use 'ThePrimeagen/harpoon'
   use 'mbbill/undotree'
@@ -65,7 +66,6 @@ return require('packer').startup(function(use)
   }
   use 'williamboman/mason.nvim'
 
-  use('prettier/vim-prettier', { run = 'npm install --frozen-lockfile --production' })
 
   use "lukas-reineke/lsp-format.nvim"
   use "tpope/vim-surround"
@@ -110,4 +110,73 @@ return require('packer').startup(function(use)
 
   --Pathogen for telescope navigation
   use 'brookhong/telescope-pathogen.nvim'
+
+  --emmet
+  use 'mattn/emmet-vim'
+
+  --file browser
+  use 'nvim-tree/nvim-tree.lua'
+
+  --auto-session
+  --use 'nyngwang/suave.lua'
+  use 'natecraddock/sessions.nvim'
+
+  --nvim-comment
+  use 'terrortylor/nvim-comment'
+
+  --jest.nvim
+  use 'mattkubej/jest.nvim'
+
+  --delay repeat execution
+  use 'ja-ford/delaytrain.nvim'
+
+  --leap motion plugin
+  use 'ggandor/leap.nvim'
+
+  --mark plugin
+  use 'chentoast/marks.nvim'
+
+  --oil for file system
+  use 'stevearc/oil.nvim'
+
+  --indent plugin
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  --spliting/joining blocks
+  use { 'Wansmer/treesj', requires = { 'nvim-treesitter' } }
+
+  --autosave
+  --use 'Pocco81/auto-save.nvim'
+
+  --signature help with func
+  use "ray-x/lsp_signature.nvim"
+
+  --formmater for prettier autosave
+  -- use "mhartington/formatter.nvim"
+  --for new prettier
+  use('neovim/nvim-lspconfig')
+  use('jose-elias-alvarez/null-ls.nvim')
+  use('MunifTanjim/prettier.nvim')
+
+  --markdown-preview install without yarn or npm
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  })
+
+  --typescript tools for faster work
+  use {
+    "pmizio/typescript-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup {}
+    end,
+  }
 end)

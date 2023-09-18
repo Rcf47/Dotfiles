@@ -2,12 +2,12 @@ local status, lualine = pcall(require, "lualine")
 if (not status) then return end
 
 vim.g.lualine_xkblayout_codes = {
-      ["2SetKorean"] = "KR",
-      ["Chinese"] = "CN",
-      ["Japanese"] = "JP",
-      ["us"]     = "ENG",
-      ["ru"]     = "РУС",
-      ["ua"]     = "УКР",
+  ["2SetKorean"] = "KR",
+  ["Chinese"]    = "CN",
+  ["Japanese"]   = "JP",
+  ["us"]         = "ENG",
+  ["ru"]         = "РУС",
+  ["ua"]         = "УКР",
 }
 lualine.setup {
   options = {
