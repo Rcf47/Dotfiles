@@ -1,8 +1,8 @@
 if status is-interactive
 alias ncal="ncal -b"
 alias shtd="sudo shutdown now"
-alias dwprettier ="wget https://github.com/Rcf47/JavaScript/blob/main/experiments/prettier_Eslint/.prettierrc.json"
-alias dwprettierignore ="wget https://github.com/Rcf47/JavaScript/blob/main/experiments/prettier_Eslint/.prettierignore"
+alias dwprettier="wget https://github.com/Rcf47/JavaScript/blob/main/experiments/prettier_Eslint/.prettierrc.json"
+alias dwprettierignore="wget https://github.com/Rcf47/JavaScript/blob/main/experiments/prettier_Eslint/.prettierignore"
 export EDITOR=/snap/bin/nvim
 #alt+f for exact find
 bind \ef ~/Programms/scripts/findWithFzf.sh
