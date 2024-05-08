@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 local config = {}
 
@@ -14,25 +14,38 @@ config.window_padding = {
   bottom = 5,
 }
 config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = .88
+config.window_background_opacity = 0.88
+config.font = wezterm.font("hack nerd font")
 config.font_size = 22
 
 config.colors = {
   tab_bar = {
     active_tab = {
-      bg_color = '#414868',
-      fg_color = '#fefefe',
+      bg_color = "#414868",
+      fg_color = "#fefefe",
     },
     inactive_tab = {
-      bg_color = '#1a1b26',
-      fg_color = '#808080',
+      bg_color = "#1a1b26",
+      fg_color = "#808080",
     },
     new_tab = {
-      bg_color = '#1a1b26',
-      fg_color = '#fefefe',
+      bg_color = "#1a1b26",
+      fg_color = "#fefefe",
     },
-    inactive_tab_edge = '#1a1b26',
+    inactive_tab_edge = "#1a1b26",
   },
-  background = 'black'
+  background = "black",
+}
+config.default_prog = { "/usr/bin/zsh" }
+
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 }
+config.keys = {
+  {
+    key = "!",
+    mods = "LEADER | SHIFT",
+    action = wezterm.action_callback(function(win, pane)
+      local tab, window = pane:move_to_new_window()
+    end),
+  },
 }
 return config
