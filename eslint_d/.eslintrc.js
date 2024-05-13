@@ -5,6 +5,8 @@ var OFF = 0,
 module.exports = exports = {
   "env": {
     "es6": true,
+    "node": true,
+    "browser": true,
   },
 
   "ecmaFeatures": {
@@ -170,7 +172,7 @@ module.exports = exports = {
     "consistent-this": [WARN, "self"],
     "eol-last": WARN,
     "func-names": WARN,
-    "func-style": [WARN, "declaration"],
+    "func-style": [WARN, "declaration", { "allowArrowFunctions": true }],
     "id-length": [WARN, { "min": 2, "max": 32 }],
     "indent": [WARN, 2],
     "jsx-quotes": [WARN, "prefer-double"],
@@ -209,7 +211,7 @@ module.exports = exports = {
       WARN,
       {
         "require": {
-          "FunctionDeclaration": true,
+          "FunctionDeclaration": false,
           "MethodDefinition": true,
           "ClassDeclaration": false,
         },
@@ -219,7 +221,10 @@ module.exports = exports = {
     "semi": [ERROR, "always"],
     "sort-vars": OFF,
     "space-before-blocks": [WARN, "always"],
-    "space-before-function-paren": [WARN, "never"],
+    "space-before-function-paren": [
+      WARN,
+      { "anonymous": "always", "named": "never", "asyncArrow": "always" },
+    ],
     "keyword-spacing": [WARN, { "before": true, "after": true }],
     "space-in-parens": [WARN, "never"],
     "space-infix-ops": [WARN, { "int32Hint": true }],
