@@ -205,7 +205,7 @@ module.exports = exports = {
     "operator-assignment": [WARN, "never"],
     "operator-linebreak": [WARN, "after"],
     "padded-blocks": [WARN, "never"],
-    "quote-props": [WARN, "always"],
+    "quote-props": [WARN, "consistent"],
     "quotes": [WARN, "double"],
     "require-jsdoc": [
       WARN,
