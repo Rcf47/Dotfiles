@@ -209,6 +209,7 @@ export BAT_THEME="Catppuccin Mocha"
  export EDITOR=/usr/bin/nvim
  export MANPAGER="nvim +Man!"
  export HISTSIZE=10000
+ export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/.prettierrc.json"
 
  eval "$(zoxide init zsh)"
  alias cd="z"
