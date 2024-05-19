@@ -21,11 +21,11 @@ config.font_size = 22
 config.colors = {
   tab_bar = {
     active_tab = {
-      bg_color = "#414868",
-      fg_color = "#fefefe",
+      bg_color = "#89B4FA",
+      fg_color = "#1e1e2e",
     },
     inactive_tab = {
-      bg_color = "#1a1b26",
+      bg_color = "#1e1e2e",
       fg_color = "#808080",
     },
     new_tab = {
