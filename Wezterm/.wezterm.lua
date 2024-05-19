@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-
+local act = wezterm.action
 local config = {}
 
 if wezterm.config_builder then
@@ -46,6 +46,21 @@ config.keys = {
     action = wezterm.action_callback(function(win, pane)
       local tab, window = pane:move_to_new_window()
     end),
+  },
+  {
+    key = "E",
+    mods = "CTRL|SHIFT",
+    action = act.PromptInputLine({
+      description = "Enter new name for tab",
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    }),
   },
 }
 return config
