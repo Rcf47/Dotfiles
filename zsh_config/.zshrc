@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""
 
 
 # Set list of themes to pick from when loading at random
@@ -91,6 +91,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -206,10 +207,12 @@ export BAT_THEME="Catppuccin Mocha"
  alias shtd="shutdown now"   # Commands to run in interactive sessions can go here
  alias ls="eza -al --color=always --group-directories-first --icons=always --no-user"
  alias cat="bat -n --color=always --line-range :500"
+ alias open="xdg-open"
  export EDITOR=/usr/bin/nvim
  export MANPAGER="nvim +Man!"
  export HISTSIZE=10000
  export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/.prettierrc.json"
+ export ATAC_KEY_BINDINGS="$HOME/.config/atac/vim_key_bindings.toml"
 
  eval "$(zoxide init zsh)"
  alias cd="z"
@@ -268,3 +271,7 @@ function yy() {
  
  #turn off the screen saver
  xset s off -dpms
+
+ #starship
+ eval "$(starship init zsh)"
+
