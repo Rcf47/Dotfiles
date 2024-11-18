@@ -275,3 +275,6 @@ function yy() {
  #starship
  eval "$(starship init zsh)"
 
+ #autosuggestions bindkey
+ bindkey '^[g' autosuggest-accept
+ bindkey '^g' autosuggest-execute
