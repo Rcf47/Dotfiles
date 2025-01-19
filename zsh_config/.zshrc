@@ -275,6 +275,15 @@ function yy() {
  #starship
  eval "$(starship init zsh)"
 
- #autosuggestions bindkey
+ #autosuggestions bindkey Alt+g Ctrl+g
  bindkey '^[g' autosuggest-accept
  bindkey '^g' autosuggest-execute
+
+ #labctl devops playground
+ export PATH=$PATH:/home/vadim/.iximiuz/labctl/bin:/home/vadim/Programms/myScripts/calcTime/youtubeapi
+ source <(labctl completion zsh)
+
+ function chpwd {
+    pwd
+    eza -D -1 --show-symlinks --icons=auto
+}
