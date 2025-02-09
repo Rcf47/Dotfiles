@@ -208,11 +208,15 @@ export BAT_THEME="Catppuccin Mocha"
  alias ls="eza -al --color=always --group-directories-first --icons=always --no-user"
  alias cat="bat -n --color=always --line-range :500"
  alias open="xdg-open"
+ alias cal="cal -m"
  export EDITOR=/usr/bin/nvim
  export MANPAGER="nvim +Man!"
  export HISTSIZE=10000
  export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/.prettierrc.json"
  export ATAC_KEY_BINDINGS="$HOME/.config/atac/vim_key_bindings.toml"
+
+ # for steam libgl
+ export LIBGL_ALWAYS_SOFTWARE=0
 
  eval "$(zoxide init zsh)"
  alias cd="z"
