@@ -214,6 +214,7 @@ export BAT_THEME="Catppuccin Mocha"
  export HISTSIZE=10000
  export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/.prettierrc.json"
  export ATAC_KEY_BINDINGS="$HOME/.config/atac/vim_key_bindings.toml"
+ export XCURSOR_THEME=catppuccin-mocha-blue-cursors
 
  # for steam libgl
  export LIBGL_ALWAYS_SOFTWARE=0
