@@ -292,3 +292,6 @@ function yy() {
     pwd
     eza -D -1 --show-symlinks --icons=auto
 }
+
+#unset beep sound
+unsetopt beep
