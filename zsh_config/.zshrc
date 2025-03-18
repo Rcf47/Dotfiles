@@ -209,6 +209,7 @@ export BAT_THEME="Catppuccin Mocha"
  alias cat="bat -n --color=always --line-range :500"
  alias open="xdg-open"
  alias cal="cal -m"
+ alias t="todo.sh"
  export EDITOR=/usr/bin/nvim
  export MANPAGER="nvim +Man!"
  export HISTSIZE=10000
@@ -285,7 +286,8 @@ function yy() {
  bindkey '^g' autosuggest-execute
 
  #labctl devops playground
- export PATH=$PATH:/home/vadim/.iximiuz/labctl/bin:/home/vadim/Programms/myScripts/calcTime/youtubeapi
+ export PATH=$PATH:/home/vadim/.iximiuz/labctl/bin:/home/vadim/Programms/myScripts/calcTime/youtubeapi:/home/vadim/Github/todo.txt_cli-2.13.0
+
  source <(labctl completion zsh)
 
  function chpwd {
