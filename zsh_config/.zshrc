@@ -333,4 +333,4 @@ rgo () {
     *)    "$editor" "$file" ;;
   esac
 }
-export -f rgo
+export rgo
