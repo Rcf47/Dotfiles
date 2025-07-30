@@ -216,6 +216,8 @@ export BAT_THEME="Catppuccin Mocha"
  export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/.prettierrc.json"
  export ATAC_KEY_BINDINGS="$HOME/.config/atac/vim_key_bindings.toml"
  export XCURSOR_THEME=catppuccin-mocha-blue-cursors
+ export HIST_STAMPS="yyyy-mm-dd hh:mm:ss"
+ 
 
  # for steam libgl
  export LIBGL_ALWAYS_SOFTWARE=0
@@ -297,3 +299,38 @@ function yy() {
 
 #unset beep sound
 unsetopt beep
+
+# zsh-autosuggestions
+autoload -Uz compinit
+compinit
+
+# history with timestamp
+setopt EXTENDED_HISTORY
+
+#rgo script
+rgo () {
+  local editor=${2:-nvim}
+
+  # ищем совпадения, показываем их в fzf с превью
+  local sel=$(
+    rg --line-number --no-heading --color=never "$1" \
+    | fzf \
+        --height 50% --border \
+        --delimiter ':' \
+        --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' \
+        --preview-window 'right:60%' \
+  ) || return
+
+  # вытаскиваем путь и номер строки
+  local file=${sel%%:*}
+  local rest=${sel#*:}
+  local line=${rest%%:*}
+
+  case "$editor" in
+    vim)  vim +"$line" "$file" ;;
+    nano) nano +"$line" "$file" ;;
+    bat)  bat --style=numbers --highlight-line "$line" "$file" ;;
+    *)    "$editor" "$file" ;;
+  esac
+}
+export -f rgo
