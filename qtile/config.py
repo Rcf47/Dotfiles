@@ -11,8 +11,11 @@ from subprocess import check_output
 
 mod = "mod4"
 terminal = "kitty"
-clock_time = widget.Clock(name="clock", format="%H:%M")
-clock_date = widget.Clock(name="clock", format="%a, %d.%m.%Y")
+clock_time = widget.Clock(name="clock", format="%H:%M",
+                          foreground=CATPPUCCIN["red"])
+clock_date = widget.Clock(
+    name="clock", format="%a, %d.%m.%Y", foreground=CATPPUCCIN["rosewater"]
+)
 
 
 class Commands:
@@ -36,13 +39,15 @@ groupbox_bar = bar.Bar(
         widget.Spacer(),
         widget.GroupBox(
             highlight_method="line",
-            active="#74c7ec",
-            inactive="#f5e0dc",
+            active=CATPPUCCIN["blue"],
+            inactive=CATPPUCCIN["rosewater"],
             # highlight_color=[CATPPUCCIN["blue"], "#f5e0dc"],
             # block_highlight_text_color=CATPPUCCIN["blue"],
             borderwidth=4,
-            this_current_screen_border=CATPPUCCIN["blue"],
+            this_current_screen_border=CATPPUCCIN["mauve"],
             padding=10,
+            urgent_border=CATPPUCCIN["red"],
+            urgent_text=CATPPUCCIN["red"],
         ),
         widget.Spacer(),
         widget.WidgetBox(
@@ -54,7 +59,7 @@ groupbox_bar = bar.Bar(
         widget.GenPollText(
             func=commands.get_keyboard,
             update_interval=0.5,
-            foreground="#ffffff",
+            foreground=CATPPUCCIN["rosewater"],
         ),
         widget.WidgetBox(
             text_open="",
