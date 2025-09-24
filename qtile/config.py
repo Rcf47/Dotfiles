@@ -3,7 +3,7 @@ import subprocess
 
 import libqtile.resources
 from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Key, Match, Screen
 from libqtile.lazy import lazy
 from groups import groups
 from colors import CATPPUCCIN
@@ -22,8 +22,8 @@ class Commands:
 
     def get_keyboard(self):
         display_map = {
-            "us": "US ",
-            "ru": "RU ",
+            "us": "🇺🇸 ",
+            "ru": "🇷🇺 ",
         }
         keyboard = (
             check_output("xkb-switch -p",
@@ -55,11 +55,12 @@ groupbox_bar = bar.Bar(
             text_open=">",
             widgets=[widget.Systray()],
             name="widgetbox1",
+            foreground=CATPPUCCIN["blue"],
         ),
         widget.GenPollText(
             func=commands.get_keyboard,
-            update_interval=0.5,
-            foreground=CATPPUCCIN["rosewater"],
+            update_interval=0.3,
+            foreground=CATPPUCCIN["blue"],
         ),
         widget.WidgetBox(
             text_open="",
@@ -207,7 +208,7 @@ layouts = [
         border_width=4,
     ),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.Key([mod], "b", lazy.hide_show_bar("top"), desc="Toggle the top bar on/off"),
+    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -239,8 +240,6 @@ wallpapers = {
     "7": "/home/vadim/.config/wallpaper/dark-cat-rosewater.png",
 }
 
-# wallpapertest = "/home/vadim/.config/wallpaper/dark-cat-rosewater.png"
-
 
 @hook.subscribe.setgroup
 def set_wallpaper():
@@ -271,12 +270,6 @@ def new_wallpaper():
     )
     # Вызываем нашу функцию, чтобы установить обои для первой группы
     set_wallpaper()
-
-
-# @hook.subscribe.startup
-# def autostart():
-#    home = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
-#    subprocess.call(home)
 
 
 screens = [
