@@ -45,7 +45,7 @@ groupbox_bar = bar.Bar(
             padding=10,
         ),
         widget.Spacer(),
-        widget.widgetbox.WidgetBox(
+        widget.WidgetBox(
             text_closed="",
             text_open=">",
             widgets=[widget.Systray()],
@@ -56,7 +56,7 @@ groupbox_bar = bar.Bar(
             update_interval=0.5,
             foreground="#ffffff",
         ),
-        widget.widgetbox.WidgetBox(
+        widget.WidgetBox(
             text_open="",
             text_closed="",
             widgets=[clock_date],
@@ -259,6 +259,11 @@ def set_wallpaper():
 
 @hook.subscribe.startup_once
 def new_wallpaper():
+    subprocess.Popen(["picom", "-b"])
+    subprocess.Popen(
+        ["setxkbmap", "-layout", "us,ru", "-option",
+            "grp:caps_toggle,grp_led:scroll"]
+    )
     # Вызываем нашу функцию, чтобы установить обои для первой группы
     set_wallpaper()
 
