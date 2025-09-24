@@ -5,13 +5,70 @@ import libqtile.resources
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import send_notification
 from groups import groups
 from colors import CATPPUCCIN
 from subprocess import check_output
 
 mod = "mod4"
 terminal = "kitty"
+clock_time = widget.Clock(name="clock", format="%H:%M")
+clock_date = widget.Clock(name="clock", format="%a, %d.%m.%Y")
+
+
+class Commands:
+
+    def get_keyboard(self):
+        display_map = {
+            "us": "US ",
+            "ru": "RU ",
+        }
+        keyboard = (
+            check_output("xkb-switch -p",
+                         shell=True).decode("utf-8").replace("\n", "")
+        )
+
+        return display_map[keyboard]
+
+
+commands = Commands()
+groupbox_bar = bar.Bar(
+    [
+        widget.Spacer(),
+        widget.GroupBox(
+            highlight_method="line",
+            active="#74c7ec",
+            inactive="#f5e0dc",
+            # highlight_color=[CATPPUCCIN["blue"], "#f5e0dc"],
+            # block_highlight_text_color=CATPPUCCIN["blue"],
+            borderwidth=4,
+            this_current_screen_border=CATPPUCCIN["blue"],
+            padding=10,
+        ),
+        widget.Spacer(),
+        widget.widgetbox.WidgetBox(
+            text_closed="",
+            text_open=">",
+            widgets=[widget.Systray()],
+            name="widgetbox1",
+        ),
+        widget.GenPollText(
+            func=commands.get_keyboard,
+            update_interval=0.5,
+            foreground="#ffffff",
+        ),
+        widget.widgetbox.WidgetBox(
+            text_open="",
+            text_closed="",
+            widgets=[clock_date],
+            name="widgetbox2",
+        ),
+        clock_time,
+        widget.CurrentLayout(icon_first=True, mode="icon"),
+    ],
+    size=25,
+    background="#10101b",
+)
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -83,11 +140,19 @@ keys = [
         lazy.spawn("google-chrome-stable"),
         desc="Launch google-chrome-stable",
     ),
+    Key([mod], "b", lazy.hide_show_bar("top"),
+        desc="Toggle the top bar on/off"),
     Key(
-        [mod],
-        "space",
-        lazy.widget["keyboardlayout"].next_keyboard(),
-        desc="Next keyboard layout.",
+        [mod, "shift"],
+        "s",
+        lazy.widget["widgetbox1"].toggle(),
+        desc="Toggle widgetbox with systray",
+    ),
+    Key(
+        [mod, "shift"],
+        "d",
+        lazy.widget["widgetbox2"].toggle(),
+        desc="Toggle widgetbox with clock",
     ),
 ]
 
@@ -137,7 +202,7 @@ layouts = [
         border_width=4,
     ),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
+    # Try more layouts by unleashing below layouts.Key([mod], "b", lazy.hide_show_bar("top"), desc="Toggle the top bar on/off"),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -152,7 +217,7 @@ layouts = [
 
 widget_defaults = dict(
     font="Fira code",
-    fontsize=16,
+    fontsize=24,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -202,62 +267,10 @@ def new_wallpaper():
 # def autostart():
 #    home = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
 #    subprocess.call(home)
-class Commands:
-    def get_keyboard(self):
-        display_map = {
-            "us": "US ",
-            "ru": "RU ",
-        }
-        keyboard = (
-            check_output("xkb-switch -p",
-                         shell=True).decode("utf-8").replace("\n", "")
-        )
 
-        return display_map[keyboard]
-
-
-commands = Commands()
 
 screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    active="#ffffff",
-                    inactive="#ffffff",
-                    block_highlight_text_color="#89b4fa",
-                    borderwidth=0,
-                ),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.GenPollText(
-                    func=commands.get_keyboard,
-                    update_interval=0.5,
-                    foreground="#ffffff",
-                ),
-                widget.Clock(format="%a, %d.%m.%Y %H:%M"),
-                widget.CurrentLayout(),
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
-        # wallpaper=wallpapertest,
-        # wallpaper_mode="fill",
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
+    Screen(top=groupbox_bar),
 ]
 
 # Drag floating layouts.
