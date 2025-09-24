@@ -36,6 +36,14 @@ class Commands:
 commands = Commands()
 groupbox_bar = bar.Bar(
     [
+        widget.NvidiaSensors(
+            format="GPU temp: {temp}°C ", foreground=CATPPUCCIN["text"]
+        ),
+        widget.Sep(linewidth=2, foreground=CATPPUCCIN["blue"]),
+        widget.ThermalSensor(
+            format="CPU: {temp:.0f}{unit} ", foreground=CATPPUCCIN["text"]
+        ),
+        widget.Sep(linewidth=2, foreground=CATPPUCCIN["blue"]),
         widget.Spacer(),
         widget.GroupBox(
             highlight_method="line",
@@ -50,6 +58,15 @@ groupbox_bar = bar.Bar(
             urgent_text=CATPPUCCIN["red"],
         ),
         widget.Spacer(),
+        widget.Sep(linewidth=2, foreground=CATPPUCCIN["blue"]),
+        widget.Memory(
+            measure_mem="G",
+            format="FreeRAM: {Available: .2f} GB ",
+            foreground=CATPPUCCIN["text"],
+        ),
+        widget.Sep(linewidth=2, foreground=CATPPUCCIN["blue"]),
+        widget.CPU(foreground=CATPPUCCIN["text"]),
+        widget.Sep(linewidth=2, foreground=CATPPUCCIN["blue"]),
         widget.WidgetBox(
             text_closed="",
             text_open=">",
