@@ -2,6 +2,7 @@ from libqtile.lazy import lazy
 from libqtile.config import Key, Drag, Click
 from libqtile import qtile
 from groups import groups
+from commands import commands
 
 mod = "mod4"
 terminal = "kitty"
@@ -16,6 +17,10 @@ keys = [
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(),
         desc="Move window focus to other window"),
+    Key([mod, "mod1"], "j", lazy.group.next_window(),
+        desc="Next window inside group"),
+    Key([mod, "mod1"], "k", lazy.group.prev_window(),
+        desc="Next window inside group"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
@@ -54,6 +59,12 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key(
+        [mod, "shift", "control"],
+        "c",
+        lazy.function(commands.kill_all),
+        desc="Kill all window in group",
+    ),
+    Key(
         [mod],
         "f",
         lazy.window.toggle_fullscreen(),
@@ -90,7 +101,25 @@ keys = [
         lazy.widget["widgetbox2"].toggle(),
         desc="Toggle widgetbox with clock",
     ),
+    Key(
+        [mod, "shift"],
+        "t",
+        lazy.widget["widgetbox3"].toggle(),
+        desc="Toggle widgetbox with systray",
+    ),
     Key([mod], "n", lazy.window.toggle_minimize(), desc="Unminimize window"),
+    Key(
+        [mod, "control"],
+        "n",
+        lazy.group.unminimize_all(),
+        desc="Unminimize all window in group",
+    ),
+    Key(
+        [mod, "shift"],
+        "n",
+        lazy.function(commands.minimize_all),
+        desc="Minimize all window in group",
+    ),
 ]
 
 # Add key bindings to switch VTs in Wayland.

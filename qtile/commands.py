@@ -15,5 +15,34 @@ class Commands:
 
         return display_map[keyboard]
 
+    def parse_window_name(self, text):
+        text = ""
+        return text
+
+    def minimize_all(self, qtile):
+        """Минимизирует/восстанавливает все окна в текущей группе."""
+        # Получаем текущую активную группу
+        current_group = qtile.current_group
+
+        # Перебираем все окна в этой группе
+        for window in current_group.windows:
+            # Вызываем команду переключения минимизации для каждого окна
+            if hasattr(window, "toggle_minimize"):
+                window.toggle_minimize()
+
+    def kill_all(self, qtile):
+        """Закрывает все окна в текущей группе."""
+        # Получаем текущую активную группу
+        current_group = qtile.current_group
+
+        # Создаем список окон для безопасного удаления,
+        # так как итератор может быть нарушен при закрытии
+        windows_to_kill = list(current_group.windows)
+
+        # Перебираем окна и закрываем каждое
+        for window in windows_to_kill:
+            # Для закрытия окна используется команда .kill()
+            window.kill()
+
 
 commands = Commands()
