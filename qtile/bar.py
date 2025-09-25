@@ -4,9 +4,8 @@ from commands import commands
 from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration
 
-
+size = 32
 widgetDecoration = {
-    # "background": CATPPUCCIN["base"],
     "decorations": [
         RectDecoration(
             colour=CATPPUCCIN["base"],
@@ -24,7 +23,7 @@ widget_defaults = dict(
 )
 
 barConfig = {
-    "size": 34,
+    "size": size,
     "background": CATPPUCCIN["transparent"],
     "margin": [4, 10, 2, 10],
     "border_width": [0, 0, 0, 0],
@@ -43,8 +42,8 @@ clock_date = widget.Clock(
     name="clock", format="%a, %d.%m.%Y", foreground=CATPPUCCIN["rosewater"]
 )
 tasklist = widget.TaskList(
-    icon_size=34,
-    fontsize=10,
+    icon_size=size,
+    fontsize=24,
     margin_y=0,
     # --- Вот ключевые изменения ---
     # spacing=0,  # Убирает текст (заголовок окна)
