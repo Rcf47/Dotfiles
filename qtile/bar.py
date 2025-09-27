@@ -39,7 +39,10 @@ clock_time = widget.Clock(
     name="clock", format="%H:%M", foreground=CATPPUCCIN["red"], **widgetDecoration
 )
 clock_date = widget.Clock(
-    name="clock", format="%a, %d.%m.%Y", foreground=CATPPUCCIN["rosewater"]
+    name="clock",
+    format="%a, %d.%m.%Y",
+    foreground=CATPPUCCIN["rosewater"],
+    **widgetDecoration,
 )
 tasklist = widget.TaskList(
     icon_size=size,
