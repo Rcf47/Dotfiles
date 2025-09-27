@@ -54,6 +54,7 @@ def new_wallpaper():
         ["setxkbmap", "-layout", "us,ru", "-option",
             "grp:caps_toggle,grp_led:scroll"]
     )
+    subprocess.Popen(["greenclip", "daemon"])
     # Вызываем нашу функцию, чтобы установить обои для первой группы
     set_wallpaper()
 

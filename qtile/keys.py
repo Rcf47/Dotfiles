@@ -87,6 +87,24 @@ keys = [
         lazy.spawn("google-chrome-stable"),
         desc="Launch google-chrome-stable",
     ),
+    Key(
+        [],
+        "Print",
+        lazy.spawn("gnome-screenshot --interactive"),
+        desc="screenshot",
+    ),
+    Key([mod], "g", lazy.spawn("gpick"), desc="launch gpick"),
+    Key(
+        [mod],
+        "o",
+        lazy.spawn(
+            "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+        ),
+        desc="launch greenclip",
+    ),
+    Key(["Mod1"], "Up", lazy.spawn("xdotool click 4"), desc="Scroll up"),
+    Key(["Mod1"], "Down", lazy.spawn("xdotool click 5"), desc="Scroll down"),
+    # bar keys
     Key([mod], "b", lazy.hide_show_bar("top"),
         desc="Toggle the top bar on/off"),
     Key(
