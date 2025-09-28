@@ -24,10 +24,10 @@ keys = [
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
-        [mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"
+        [mod, "shift", "control"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"
     ),
     Key(
-        [mod, "shift"],
+        [mod, "shift", "control"],
         "l",
         lazy.layout.shuffle_right(),
         desc="Move window to the right",
@@ -110,21 +110,40 @@ keys = [
     Key(
         [mod, "shift"],
         "s",
-        lazy.widget["widgetbox1"].toggle(),
+        lazy.widget["widgetboxSystray"].toggle(),
         desc="Toggle widgetbox with systray",
     ),
     Key(
         [mod, "shift"],
         "d",
-        lazy.widget["widgetbox2"].toggle(),
+        lazy.widget["widgetboxClockDate"].toggle(),
         desc="Toggle widgetbox with clock",
     ),
     Key(
         [mod, "shift"],
-        "t",
-        lazy.widget["widgetbox3"].toggle(),
-        desc="Toggle widgetbox with systray",
+        "w",
+        lazy.widget["widgetboxTaskList"].toggle(),
+        desc="Toggle widgetbox with windows",
     ),
+    Key(
+        [mod, "shift"],
+        "t",
+        lazy.widget["widgetboxSensors"].toggle(),
+        desc="Toggle widgetbox with temperature",
+    ),
+    Key(
+        [mod, "shift"],
+        "l",
+        lazy.widget["widgetboxLayout"].toggle(),
+        desc="Toggle widgetbox with layout",
+    ),
+    Key(
+        [mod, "shift"],
+        "p",
+        lazy.widget["widgetboxCPU"].toggle(),
+        desc="Toggle widgetbox with cpu",
+    ),
+    # window control
     Key([mod], "n", lazy.window.toggle_minimize(), desc="Unminimize window"),
     Key(
         [mod, "control"],

@@ -70,26 +70,46 @@ tasklist = widget.TaskList(
     rounded=True,
     stretch=False,
 )
+
+nvidia_sensors = widget.NvidiaSensors(
+    format="GPU temp: {temp}°C ",
+    foreground=CATPPUCCIN["text"],
+    **widgetDecoration,
+)
+
+
+thermal_sensor = widget.ThermalSensor(
+    format="CPU: {temp:.0f}{unit} ",
+    foreground=CATPPUCCIN["text"],
+    **widgetDecoration,
+)
+
+cpu = widget.CPU(
+    foreground=CATPPUCCIN["text"],
+    format="CPU {freq_current} GHz {load_percent:04.1f}%",
+    **widgetDecoration,
+)
+
+current_layout = widget.CurrentLayout(
+    icon_first=True, mode="icon", **widgetDecoration)
+
+
 groupbox_bar = bar.Bar(
     [
         widget.WindowCount(**widgetDecoration),
-        widget.NvidiaSensors(
-            format="GPU temp: {temp}°C ",
-            foreground=CATPPUCCIN["text"],
-            **widgetDecoration,
-        ),
         widget.Spacer(length=10),
-        widget.ThermalSensor(
-            format="CPU: {temp:.0f}{unit} ",
-            foreground=CATPPUCCIN["text"],
-            **widgetDecoration,
+        widget.WidgetBox(
+            text_closed="",
+            text_open="",
+            widgets=[nvidia_sensors, thermal_sensor],
+            name="widgetboxSensors",
         ),
         widget.Spacer(length=10),
         widget.WidgetBox(
             text_closed="",
             text_open="",
             widgets=[tasklist],
-            name="widgetbox3",
+            name="widgetboxTaskList",
             foreground=CATPPUCCIN["blue"],
         ),
         widget.Spacer(),
@@ -109,14 +129,17 @@ groupbox_bar = bar.Bar(
         widget.Spacer(),
         widget.Memory(
             measure_mem="G",
-            format="FreeRAM: {Available: .2f} GB ",
+            format="FreeRAM: {Available: .2f} GB",
             foreground=CATPPUCCIN["text"],
             **widgetDecoration,
         ),
         widget.Spacer(length=10),
-        widget.CPU(
-            foreground=CATPPUCCIN["text"],
-            format="CPU {freq_current} GHz {load_percent:04.1f}%",
+        widget.WidgetBox(
+            text_closed="",
+            text_open="",
+            widgets=[cpu],
+            name="widgetboxCPU",
+            foreground=CATPPUCCIN["blue"],
             **widgetDecoration,
         ),
         widget.Spacer(length=10),
@@ -124,7 +147,7 @@ groupbox_bar = bar.Bar(
             text_closed="",
             text_open=">",
             widgets=[widget.Systray()],
-            name="widgetbox1",
+            name="widgetboxSystray",
             foreground=CATPPUCCIN["blue"],
             **widgetDecoration,
         ),
@@ -138,11 +161,17 @@ groupbox_bar = bar.Bar(
             text_open="",
             text_closed="",
             widgets=[clock_date],
-            name="widgetbox2",
+            name="widgetboxClockDate",
             **widgetDecoration,
         ),
         clock_time,
-        widget.CurrentLayout(icon_first=True, mode="icon", **widgetDecoration),
+        widget.WidgetBox(
+            text_open="",
+            text_closed="",
+            widgets=[current_layout],
+            name="widgetboxLayout",
+            **widgetDecoration,
+        ),
     ],
     **barConfig,
 )
