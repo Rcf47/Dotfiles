@@ -24,7 +24,10 @@ keys = [
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
-        [mod, "shift", "control"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"
+        [mod, "shift", "control"],
+        "h",
+        lazy.layout.shuffle_left(),
+        desc="Move window to the left",
     ),
     Key(
         [mod, "shift", "control"],
@@ -102,8 +105,45 @@ keys = [
         ),
         desc="launch greenclip",
     ),
+    # mouse control
     Key(["Mod1"], "Up", lazy.spawn("xdotool click 4"), desc="Scroll up"),
     Key(["Mod1"], "Down", lazy.spawn("xdotool click 5"), desc="Scroll down"),
+    Key(
+        ["Mod1"],
+        "KP_Down",
+        lazy.spawn("xdotool mousemove_relative -- 0 15"),
+        desc="Mouse down",
+    ),
+    Key(
+        ["Mod1"],
+        "KP_Up",
+        lazy.spawn("xdotool mousemove_relative -- 0 -15"),
+        desc="Mouse up",
+    ),
+    Key(
+        ["Mod1"],
+        "KP_Left",
+        lazy.spawn("xdotool mousemove_relative -- -15 0"),
+        desc="Mouse left",
+    ),
+    Key(
+        ["Mod1"],
+        "KP_Right",
+        lazy.spawn("xdotool mousemove_relative -- 15 0"),
+        desc="Mouse right",
+    ),
+    Key(
+        ["Mod1"],
+        "KP_Begin",
+        lazy.spawn("xdotool click 1"),
+        desc="Mouse left click",
+    ),
+    Key(
+        ["Mod1"],
+        "KP_Prior",
+        lazy.spawn("xdotool click 3"),
+        desc="Mouse right click",
+    ),
     # bar keys
     Key([mod], "b", lazy.hide_show_bar("top"),
         desc="Toggle the top bar on/off"),
@@ -145,12 +185,6 @@ keys = [
     ),
     # window control
     Key([mod], "n", lazy.window.toggle_minimize(), desc="Unminimize window"),
-    Key(
-        [mod, "control"],
-        "n",
-        lazy.group.unminimize_all(),
-        desc="Unminimize all window in group",
-    ),
     Key(
         [mod, "shift"],
         "n",
