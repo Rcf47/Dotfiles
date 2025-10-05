@@ -64,7 +64,7 @@ tasklist = widget.TaskList(
     borderwidth=2,
     highlight_method="block",  # или 'border'
     # Цвет выделения (Catppuccin Macchiato blue)
-    border=CATPPUCCIN["blue"],
+    border=CATPPUCCIN["pink"],
     # Цвет неактивных (Catppuccin Macchiato surface1)
     unfocused_border=CATPPUCCIN["surface1"],
     rounded=True,
