@@ -79,6 +79,7 @@ nvidia_sensors = widget.NvidiaSensors(
 
 
 thermal_sensor = widget.ThermalSensor(
+    tag_sensor="Package id 0",
     format="CPU: {temp:.0f}{unit} ",
     foreground=CATPPUCCIN["text"],
     **widgetDecoration,
